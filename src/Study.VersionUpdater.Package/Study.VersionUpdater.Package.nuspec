@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>VersionUpdater</id>
+    <version>$version$</version>
+    <title>VersionUpdater</title>
+    <authors>zericco</authors>
+    <projectUrl>https://github.com/zericco/Study.VersionUpdater.Package.git</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>update version according to previously delivered package in target nuget repository</description>
+    <copyright>Copyright (c) zericco 2018</copyright>
+    <developmentDependency>true</developmentDependency>
+    <minClientVersion>2.8</minClientVersion>
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="Microsoft.Build.Framework" version="15.8.166" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Build.Utilities.Core" version="15.8.166" exclude="Build,Analyzers" />
+        <dependency id="NuGet.Client" version="4.2.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Microsoft.Build.Framework" version="15.8.166" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Build.Utilities.Core" version="15.8.166" exclude="Build,Analyzers" />
+        <dependency id="NuGet.Client" version="4.2.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="net462/VersionUpdater.Tasks.dll" target="tools/net462/"/>
+    <file src="netstandard2.0/VersionUpdater.Tasks.dll" target="tools/netstandard2.0/"/>
+  </files>
+</package>

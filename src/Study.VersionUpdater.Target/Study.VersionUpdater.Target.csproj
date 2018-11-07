@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>b0d2a181-fc10-4385-88c8-23c10aa2ee7e</ProjectGuid>
+    <ProjectGuid>fdb68ab5-5404-4f81-a2b9-e36a0ad932dd</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Study.VersionUpdater.Package</RootNamespace>
-    <AssemblyName>Study.VersionUpdater.Package</AssemblyName>
+    <RootNamespace>Study.VersionUpdater.Target</RootNamespace>
+    <AssemblyName>Study.VersionUpdater.Target</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
