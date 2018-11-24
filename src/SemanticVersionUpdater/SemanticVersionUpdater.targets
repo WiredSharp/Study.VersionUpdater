@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="UpdateAssemblyInformationalVersion">
+
+  <PropertyGroup>
+    <VersionUpdaterExe Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework'">"$(MSBuildThisFileDirectory)..\..\tools\net462\semanticversionupdater.exe"</VersionUpdaterExe>
+    <NugetRepository Condition="'$(NugetRepository)'==''">https://api.nuget.org/v3</NugetRepository>
+    <PackageId Condition="'$(PackageId)'==''">$(AssemblyName)</PackageId>
+    <SolutionDir Condition="'$(SolutionDir)'==''">..\</SolutionDir>
+  </PropertyGroup>
+
+  <Target Name="UpdateAssemblyInformationalVersion" Condition="'$(Configuration)'=='Release'" BeforeTargets="CoreCompile">
+    <Message Text="Updating versioninfo files in $(ProjectDir)Properties\ $(SolutionDir)Shared\"/>
+    <Exec Command="$(VersionUpdaterExe) versioninfo -p $(PackageId) -s $(NugetRepository) $(ProjectDir)Properties\ $(SolutionDir)Shared\"/> 
+  </Target>
+</Project>

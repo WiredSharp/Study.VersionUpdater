@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>SemanticVersioning.Target.Acceptance</id>
+    <version>$version$</version>
+    <authors></authors>
+    <description>version updater test package</description>
+  </metadata>
+</package>
