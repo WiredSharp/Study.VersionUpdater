@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using NuGet.Protocol.Core.Types;
 using NuGet.Versioning;
 using NUnit.Framework;
 
@@ -17,7 +16,7 @@ namespace SemanticVersioning.Acceptance
     [TestFixture]
     public class VersionGeneratorTest : TestBase
     {
-        private const string PackageId = "Common.Owin.Core";
+        private const string PackageId = "Newtonsoft.Json";
 
         [Test]
         [TestCaseSource(nameof(ExpectedPatches))]
@@ -49,26 +48,23 @@ namespace SemanticVersioning.Acceptance
         [Test]
         public async Task i_can_retrieve_next_version()
         {
-            const string packageId = "Common.Tools";
-            await AssertLastVersion(packageId);
+            await AssertLastVersion(PackageId);
         }
 
         [Test]
         public async Task i_can_retrieve_next_patch()
         {
-            const string packageId = "Common.Tools";
             const int major = 2;
             const int minor = 3;
-            await AssertLastPatch(packageId, major, minor);
+            await AssertLastPatch(PackageId, major, minor);
         }
 
         [Test]
         public async Task i_can_retrieve_next_patch_for_new_version()
         {
-            const string packageId = "Common.Tools";
             const int major = 0;
             const int minor = 3;
-            await AssertLastPatch(packageId, major, minor);
+            await AssertLastPatch(PackageId, major, minor);
         }
 
         [Test]

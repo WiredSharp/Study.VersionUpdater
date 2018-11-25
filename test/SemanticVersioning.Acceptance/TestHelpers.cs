@@ -22,8 +22,7 @@ namespace SemanticVersioning.Acceptance
 {
     public class TestHelpers
     {
-        public const string RepositoryUrl = "https://almbinaryrepo.corp..ch/api/nuget/v3/libs-dotnet-release-local/";
-        //public const string RepositoryUrl = "C:\\Users\\ebl\\Root\\dev\\nuget-local";
+        public const string RepositoryUrl = "https://api.nuget.org/v3/index.json";
 
         public static async Task<int> GetLastPatchAsync(string packageId, int major, int minor, bool includePreRelease = true)
         {

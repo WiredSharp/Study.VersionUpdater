@@ -17,10 +17,11 @@ namespace SemanticVersioning.Acceptance
     [TestFixture]
     public class VersionUpdaterTest : TestBase
     {
+        private const string packageId = "Newtonsoft.Json";
+
         [Test]
         public async Task i_can_update_versionInfo_file()
         {
-            const string packageId = "Common.Tools";
             SemanticVersion lastReleaseVersion = await GenerateVersionInfoFilesAsync(packageId);
             RunVersionUpdater(packageId, ".\\playground\\sources\\");
             foreach (FileInfo fileInfo in TestHelpers.GetSourceFolder().GetFiles("*info.cs"))
@@ -42,7 +43,7 @@ namespace SemanticVersioning.Acceptance
                     RedirectStandardOutput = true,
                     CreateNoWindow = true,
                     WorkingDirectory = TestContext.CurrentContext.TestDirectory,
-                    Arguments = $"versioninfo -v -p {packageId} {sourceFolder}"
+                    Arguments = $"versioninfo -v -p {packageId} -s {TestHelpers.RepositoryUrl} {sourceFolder}"
                 }
             };
             try
@@ -70,6 +71,10 @@ namespace SemanticVersioning.Acceptance
         {
             NuGetVersion lastVersion = await TestHelpers.GetLastVersionAsync(packageId);
             TestContext.WriteLine($"last version found for {packageId}: {lastVersion}");
+            if (!TestHelpers.GetSourceFolder().Exists)
+            {
+                TestHelpers.GetSourceFolder().Create();
+            }
             foreach (FileInfo fileInfo in TestHelpers.GetTemplateFolder().GetFiles("*info.cs"))
             {
                 File.WriteAllText(TestHelpers.GetSourceFile(fileInfo.Name).FullName,

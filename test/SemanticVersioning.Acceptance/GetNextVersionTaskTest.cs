@@ -14,10 +14,11 @@ namespace SemanticVersioning.Acceptance
     [Category("Acceptance")]
     public class GetNextVersionTaskTest : TestBase
     {
+        private const string packageId = "Newtonsoft.Json";
+
         [Test]
         public async Task i_can_retrieve_next_patch()
         {
-            const string packageId = "Common.Tools";
             const int major = 2;
             const int minor = 3;
             await AssertLastPatch(packageId, major, minor);
@@ -26,7 +27,6 @@ namespace SemanticVersioning.Acceptance
         [Test]
         public async Task i_can_retrieve_next_patch_for_new_version()
         {
-            const string packageId = "Common.Tools";
             const int major = 0;
             const int minor = 3;
             await AssertLastPatch(packageId, major, minor);
