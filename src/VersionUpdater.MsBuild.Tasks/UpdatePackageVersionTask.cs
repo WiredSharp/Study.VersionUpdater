@@ -1,10 +1,9 @@
 ﻿using System;
-using Task = Microsoft.Build.Utilities.Task;
 
-namespace SemanticVersioning.Tasks
+namespace VersionUpdater.MsBuild.Tasks
 {
 
-    public class UpdatePackageVersionTask : Task
+    public class UpdatePackageVersionTask : MsBuildTask
     {
         public override bool Execute()
         {

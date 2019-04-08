@@ -12,5 +12,6 @@
     <file src="*.dll" target="tools/net462/" />
     <file src="SemanticVersionUpdater.exe" target="tools/net462/" />
     <file src="SemanticVersionUpdater.exe.config" target="tools/net462/" />
+    <file src="SemanticVersionUpdater.psm1" target="tools/" />
   </files>
 </package>

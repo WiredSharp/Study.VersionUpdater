@@ -3,8 +3,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Build.Framework;
+using SemanticVersioning;
 
-namespace SemanticVersioning.Tasks
+namespace VersionUpdater.MsBuild.Tasks
 {
     public class GetNextVersionTask : MsBuildTask
     {
@@ -32,7 +33,7 @@ namespace SemanticVersioning.Tasks
         {
             try
             {
-                var updater = new VersionGenerator(RepositoryAddress, Logger);
+                var updater = new VersionGenerator(RepositoryAddress);
                 Task<int> task = updater.GetNextPatchAsync(PackageId, Major, Minor, CancellationToken.None);
                 if (!task.Wait(TimeOutInMs))
                 {

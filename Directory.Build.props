@@ -1,0 +1,39 @@
+<Project>
+  <PropertyGroup>
+    <!-- To be resolved from nuget package version  see https://github.com/zericco/Study.VersionUpdater -->
+    <VersionMajor Condition="'$(VersionMajor)'==''">3</VersionMajor>
+    <VersionMinor Condition="'$(VersionMinor)'==''">11</VersionMinor>
+    <VersionPatch Condition="'$(VersionPatch)'==''">0</VersionPatch>
+    <Authors>EBL</Authors>
+    <Company>EBL Inc.</Company>
+    <Product>EBL.SemanticVersionUpdater</Product>
+    <Version  Condition="'$(Version)'==''">$(VersionMajor).$(VersionMinor).$(VersionPatch)</Version>
+    <AssemblyVersion>$(VersionMajor).0.0.0</AssemblyVersion>
+    <FileVersion>$(VersionMajor).0.0.0</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(SolutionDir)' == '' ">
+    <BaseOutputPath Condition=" '$(OutputPath)' == '' ">!artifacts\bin</BaseOutputPath>
+    <BaseIntermediateOutputPath>!artifacts\obj</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(SolutionDir)' != '' ">
+    <BaseOutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)!artifacts\bin\$(MSBuildProjectName)</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(SolutionDir)!artifacts\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyInfo Include="$(SolutionDir)Shared\AssemblyInfo.Shared.cs"></AssemblyInfo>
+    <AssemblyInfo Include="$(SolutionDir)Shared\VersionInfo.cs"></AssemblyInfo>
+    <AssemblyInfo Include="$(ProjectDir)Properties\VersionInfo.cs"></AssemblyInfo>
+  </ItemGroup>
+
+  <Import Project="$(MSBuildThisFileDirectory)\build\VersionUpdater.MSBuild.Tasks.targets"  Condition="'$(Configuration)'=='Release'"/>
+
+  <Target Name="GetNextPatch" Condition="'$(Configuration)'=='Release'" BeforeTargets="CoreCompile">
+    <Message Text="Updating patch to next value"/>
+    <GetNextVersionTask Major="$(VersionMajor)" Minor="$(VersionMinor)" RepositoryAddress="https://api.nuget.org/v3/index.json" PackageId="NUnit">
+      <Output TaskParameter="Nextpatch" PropertyName="VersionPatch"/>
+    </GetNextVersionTask>
+  </Target>
+</Project>

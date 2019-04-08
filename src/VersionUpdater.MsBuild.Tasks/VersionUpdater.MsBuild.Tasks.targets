@@ -1,0 +1,5 @@
+﻿<Project>
+  <UsingTask AssemblyFile="$(MSBuildThisFileDirectory)\VersionUpdater.MSBuild.Tasks.dll" TaskName="GetNextVersionTask" />
+  <UsingTask AssemblyFile="$(MSBuildThisFileDirectory)\VersionUpdater.MSBuild.Tasks.dll" TaskName="ReadAssemblyInformationalVersionTask" />
+  <UsingTask AssemblyFile="$(MSBuildThisFileDirectory)\VersionUpdater.MSBuild.Tasks.dll" TaskName="UpdateAssemblyInformationalVersionTask" />
+</Project>

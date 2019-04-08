@@ -15,6 +15,13 @@ Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "SemanticVersioning.Module",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticVersioning.Core", "src\SemanticVersioning.Core\SemanticVersioning.Core.csproj", "{C2508130-7ACD-49FA-8A4B-B8F0C08A2C94}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{249DD45F-4885-458D-8E18-4F8D35042DF1}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VersionUpdater.MsBuild.Tasks", "src\VersionUpdater.MsBuild.Tasks\VersionUpdater.MsBuild.Tasks.csproj", "{BE5914FE-640F-4876-BB3D-6429262ACACF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +52,10 @@ Global
 		{C2508130-7ACD-49FA-8A4B-B8F0C08A2C94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2508130-7ACD-49FA-8A4B-B8F0C08A2C94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2508130-7ACD-49FA-8A4B-B8F0C08A2C94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE5914FE-640F-4876-BB3D-6429262ACACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE5914FE-640F-4876-BB3D-6429262ACACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE5914FE-640F-4876-BB3D-6429262ACACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE5914FE-640F-4876-BB3D-6429262ACACF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

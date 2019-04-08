@@ -6,7 +6,7 @@
 
 using System.Threading.Tasks;
 using NUnit.Framework;
-using SemanticVersioning.Tasks;
+using VersionUpdater.MsBuild.Tasks;
 
 namespace SemanticVersioning.Acceptance
 {

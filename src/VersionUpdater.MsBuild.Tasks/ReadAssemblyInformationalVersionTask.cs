@@ -8,8 +8,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.Build.Framework;
+using SemanticVersioning;
 
-namespace SemanticVersioning.Tasks
+namespace VersionUpdater.MsBuild.Tasks
 {
     public class ReadAssemblyInformationalVersionTask: MsBuildTask
     {
@@ -34,12 +35,12 @@ namespace SemanticVersioning.Tasks
             IReadOnlyCollection<SemanticVersion> versions = SemanticVersionReader.Read(SemanticVersionKind.AssemblyInformationalVersion, new FileInfo(VersionInfoFile));
             if (versions.Count == 0)
             {
-                Logger.Warning($"no assemblyInformationVersion found in {VersionInfoFile}");
+                Log.LogWarning($"no assemblyInformationVersion found in {VersionInfoFile}");
                 return false;
             }
             if (versions.Count > 1)
             {
-                Logger.Warning($"multiple assemblyInformationVersion found in {VersionInfoFile}");
+                Log.LogWarning($"multiple assemblyInformationVersion found in {VersionInfoFile}");
             }
             SemanticVersion = versions.First();
             return true;
