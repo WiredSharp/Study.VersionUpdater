@@ -13,27 +13,16 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(SolutionDir)' == '' ">
-    <BaseOutputPath Condition=" '$(OutputPath)' == '' ">!artifacts\bin</BaseOutputPath>
-    <BaseIntermediateOutputPath>!artifacts\obj</BaseIntermediateOutputPath>
+    <BaseOutputPath Condition=" '$(BaseOutputPath)' == '' ">$(MSBuildThisFileDirectory)!artifacts\bin</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)\obj</BaseIntermediateOutputPath>
+    <!-- for legacy project type which does not support baseOutputPath -->
+    <OutDir Condition=" '$(OutDir)' == '' ">$(MSBuildThisFileDirectory)!artifacts\bin</OutDir>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(SolutionDir)' != '' ">
-    <BaseOutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)!artifacts\bin\$(MSBuildProjectName)</BaseOutputPath>
-    <BaseIntermediateOutputPath>$(SolutionDir)!artifacts\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+    <BaseOutputPath Condition=" '$(BaseOutputPath)' == '' ">$(SolutionDir)!artifacts\bin\$(MSBuildProjectName)</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(SolutionDir)obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+    <!-- for legacy project type which does not support baseOutputPath -->
+    <OutDir Condition=" '$(OutDir)' == '' ">$(SolutionDir)!artifacts\bin\$(MSBuildProjectName)</OutDir>
   </PropertyGroup>
-
-  <ItemGroup>
-    <AssemblyInfo Include="$(SolutionDir)Shared\AssemblyInfo.Shared.cs"></AssemblyInfo>
-    <AssemblyInfo Include="$(SolutionDir)Shared\VersionInfo.cs"></AssemblyInfo>
-    <AssemblyInfo Include="$(ProjectDir)Properties\VersionInfo.cs"></AssemblyInfo>
-  </ItemGroup>
-
-  <Import Project="$(MSBuildThisFileDirectory)\build\VersionUpdater.MSBuild.Tasks.targets"  Condition="'$(Configuration)'=='Release'"/>
-
-  <Target Name="GetNextPatch" Condition="'$(Configuration)'=='Release'" BeforeTargets="CoreCompile">
-    <Message Text="Updating patch to next value"/>
-    <GetNextVersionTask Major="$(VersionMajor)" Minor="$(VersionMinor)" RepositoryAddress="https://api.nuget.org/v3/index.json" PackageId="NUnit">
-      <Output TaskParameter="Nextpatch" PropertyName="VersionPatch"/>
-    </GetNextVersionTask>
-  </Target>
 </Project>

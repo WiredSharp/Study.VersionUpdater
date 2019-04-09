@@ -1,0 +1,16 @@
+<Project>
+  <ItemGroup>
+    <AssemblyInfo Include="$(MSBuildThisFileDirectory)Shared\AssemblyInfo.Shared.cs"></AssemblyInfo>
+    <AssemblyInfo Include="$(MSBuildThisFileDirectory)Shared\VersionInfo.cs"></AssemblyInfo>
+    <AssemblyInfo Include="$(ProjectDir)Properties\VersionInfo.cs"></AssemblyInfo>
+  </ItemGroup>
+
+  <Import Project="$(MSBuildThisFileDirectory)build\VersionUpdater.MSBuild.Tasks.targets"  Condition="'$(Configuration)'=='Release'"/>
+
+  <Target Name="GetNextPatch" Condition="'$(Configuration)'=='Release'" BeforeTargets="CoreCompile">
+    <Message Text="Updating patch to next value"/>
+    <GetNextVersionTask Major="$(VersionMajor)" Minor="$(VersionMinor)" RepositoryAddress="https://api.nuget.org/v3/index.json" PackageId="NUnit">
+      <Output TaskParameter="Nextpatch" PropertyName="VersionPatch"/>
+    </GetNextVersionTask>
+  </Target>
+</Project>
