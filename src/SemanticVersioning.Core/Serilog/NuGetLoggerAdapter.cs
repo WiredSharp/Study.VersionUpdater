@@ -88,16 +88,16 @@ namespace SemanticVersioning.Serilog
             return Task.CompletedTask;
         }
 
-        public void Log(ILogMessage message)
-        {
-            if (message == null) return;
-            Log(message.Level, message.FormatWithCode());
-        }
+        //public void Log(ILogMessage message)
+        //{
+        //    if (message == null) return;
+        //    Log(message.Level, message.FormatWithCode());
+        //}
 
-        public Task LogAsync(ILogMessage message)
-        {
-            Log(message);
-            return Task.CompletedTask;
-        }
+        //public Task LogAsync(ILogMessage message)
+        //{
+        //    Log(message);
+        //    return Task.CompletedTask;
+        //}
     }
 }

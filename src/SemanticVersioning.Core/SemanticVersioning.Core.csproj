@@ -12,9 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NuGet.Client" Version="4.2.0" />
-    <PackageReference Include="NuGet.Common" Version="5.0.0" />
-    <PackageReference Include="NuGet.Configuration" Version="5.0.0" />
+    <PackageReference Include="NuGet.Configuration" Version="4.2.0" />
     <PackageReference Include="NuGet.Protocol.Core.Types" Version="4.2.0" />
     <PackageReference Include="NuGet.Protocol.Core.v3" Version="4.2.0" />
     <PackageReference Include="Serilog" Version="2.8.0" />
