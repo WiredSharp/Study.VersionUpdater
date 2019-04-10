@@ -5,12 +5,25 @@
     <AssemblyInfo Include="$(ProjectDir)Properties\VersionInfo.cs"></AssemblyInfo>
   </ItemGroup>
 
+  <Target Name="UpdateOutputPath" BeforeTargets="CoreClean">
+    <Message Text="project sdk: '$(Sdk)'"/>
+    <Message Text="Updating output path to $(BaseOutputPath)$(Configuration)"/>
+    <PropertyGroup>
+      <!-- for legacy project type which does not support baseOutputPath -->
+      <OutputPath>$(BaseOutputPath)$(Configuration)\</OutputPath>
+    </PropertyGroup>
+  </Target>
+
   <Import Project="$(MSBuildThisFileDirectory)build\VersionUpdater.MSBuild.Tasks.targets"  Condition="'$(Configuration)'=='Release'"/>
 
   <Target Name="GetNextPatch" Condition="'$(Configuration)'=='Release'" BeforeTargets="CoreCompile">
-    <Message Text="Updating patch to next value"/>
+    <!-- TODO remove NUnit test packageid -->
     <GetNextVersionTask Major="$(VersionMajor)" Minor="$(VersionMinor)" RepositoryAddress="https://api.nuget.org/v3/index.json" PackageId="NUnit">
       <Output TaskParameter="Nextpatch" PropertyName="VersionPatch"/>
     </GetNextVersionTask>
+    <Message Text="Updating version to $(VersionMajor).$(VersionMinor).$(VersionPatch)"/>
+    <PropertyGroup>
+      <Version>$(VersionMajor).$(VersionMinor).$(VersionPatch)</Version>
+    </PropertyGroup>
   </Target>
 </Project>
